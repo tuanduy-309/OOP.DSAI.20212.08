@@ -10,7 +10,7 @@ import square.NormalSquare;
 import square.Squares;
 
 public class Board {
-	private List<Squares> board = new ArrayList<Squares>();
+	private ArrayList<Squares> board = new ArrayList<Squares>();
 	public Board() {
 		HalfCircle halfCircle0 = new HalfCircle(0);
 		HalfCircle halfCircle6 = new HalfCircle(6);
@@ -64,9 +64,30 @@ public class Board {
 			position -= 12;
 		}
 		return board.get(position);
-	}	
-	public int getPointAtSquare(int position) {
-		return getSquare(position).getPoint();
 	}
-	
+	public NormalSquare getNormalSquare(int position) {
+		while (position < 0) {
+			position += 12;
+		}
+		while (position >= 12) {
+			position -= 12;
+		}
+		return (NormalSquare)board.get(position);
+	}	
+	public HalfCircle getHalfCircle(int position) {
+		while (position < 0) {
+			position += 12;
+		}
+		while (position >= 12) {
+			position -= 12;
+		}
+		return (HalfCircle)board.get(position);
+	}	
+	public void print() {
+		System.out.println("===================");
+		for (Squares square: board) {
+			
+			System.out.println("Square " + board.indexOf(square) + ":" + square.getPoint());
+		}
+	}
 }
